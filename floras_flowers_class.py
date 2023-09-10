@@ -1,7 +1,7 @@
     # Flora's Flower Farm
     # Filename: floras_flowers_class.py
     # Version: 3
-    # Description: 
+    # Description: class for flower purchase
 
 # Cost of flower for the customer
 FLOWER_COST = 3.99

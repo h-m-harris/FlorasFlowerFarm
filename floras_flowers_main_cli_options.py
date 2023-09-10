@@ -1,14 +1,12 @@
     # Flora's Flower Farm
     # Filename: floras_flowers_main.py
-    # Version: 3
-    # Description: flower shop
+    # Version: 5
+    # Description: Flower sale with options
 
-import floras_flowers_class as flower
+import floras_flowers_class_options as flower
 
-def get_input():
-    # TODO: Get int input from user how many flowers sold
-    number_of_flowers = int(input("Enter number of flowers: "))
-    return number_of_flowers
+
+
 
 
 def display():
@@ -20,10 +18,10 @@ def display():
     print(f"Your total was: ${total_sale:,.2f}")
 
 
-number_of_flowers = get_input()
 
 floras_flowers = flower.FlorasFlowers()
-
-floras_flowers.calculate(number_of_flowers)
+floras_flowers.display_flower_options()
+floras_flowers.get_input()
+floras_flowers.calculate()
 
 display()
