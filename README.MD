@@ -1,9 +1,10 @@
-# Harold's House of Hotdogs  
+# Flora's Flower Farm 
 
-Harold's House of Hotdogs is an Agile development assignment in Intro to Computer Science 1 at Western Nebraska Community College.  
+Flora's Flower Farm  is an Agile development assignment in Intro to Computer Science 1 at Western Nebraska Community College.  
 
 ## Version History 
 - (09-10-23) V1 Initial commit  
+- (9-10-23) V5 Commit with Flower options
 
 ### Purpose 
 I am an Information Technology Student at [Western Nebraska Community College](https://www.wncc.edu).
