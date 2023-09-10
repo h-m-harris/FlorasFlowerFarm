@@ -10,17 +10,19 @@ def get_input():
     number_of_flowers = int(input("Enter number of flowers: "))
     return number_of_flowers
 
+
 def display():
     # TODO: Display transaction for customer
-    number_of_flowers = floras_flowers.number_of_flowers
-    total_sale = floras_flowers.total_sale
+    number_of_flowers = floras_flowers.get_number_flowers()
+    total_sale = floras_flowers.get_total_sale()
     
     print(f"Number of flowers: {number_of_flowers}")
     print(f"Your total was: ${total_sale:,.2f}")
 
-floras_flowers = flower.FlorasFlowers()
 
 number_of_flowers = get_input()
+
+floras_flowers = flower.FlorasFlowers()
 
 floras_flowers.calculate(number_of_flowers)
 
