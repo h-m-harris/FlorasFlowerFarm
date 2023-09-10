@@ -3,7 +3,7 @@
     # Version: 5
     # Description: Flower sale with options
 
-import floras_flowers_class_options as flower
+import floras_flowers_class_V5 as flower
 
 
 
