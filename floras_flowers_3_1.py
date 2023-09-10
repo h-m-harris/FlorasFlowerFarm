@@ -1,5 +1,5 @@
     # Flora's Flower Farm
-    # Filename: floras_flower_house_3_1.py
+    # Filename: floras_flowers_3_1.py
     # Version: 3.1
     # Description: OOP POS Program (the second option)
 

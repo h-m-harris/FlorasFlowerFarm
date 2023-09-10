@@ -1,5 +1,5 @@
     # Flora's Flower Farm
-    # Filename: harold_flower_house_1.py
+    # Filename: floras_flowers_1.py
     # Version: 1
     # Description: POS Program
 
