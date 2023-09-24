@@ -5,8 +5,8 @@
 
 import floras_flowers_class_V5_2 as flower
 
-def display():
-    # TODO: Display transaction for customer
+def display_receipt():
+    # TODO: Display_receipt transaction for customer
     number_of_flowers = floras_flowers.get_number_flowers()
     total_sale = floras_flowers.get_total_sale()
     
@@ -16,8 +16,8 @@ def display():
 
 
 floras_flowers = flower.FlorasFlowers()
-floras_flowers.display_flower_options()
-floras_flowers.get_input()
-floras_flowers.calculate()
+floras_flowers.display_menu()
+#floras_flowers.get_input()
+#floras_flowers.calculate()
 
-display()
+#display_receipt()
