@@ -5,19 +5,18 @@
 
 import floras_flowers_class_V5_2 as flower
 
+
 def display_receipt():
-    # TODO: Display_receipt transaction for customer
-    number_of_flowers = floras_flowers.get_number_flowers()
-    total_sale = floras_flowers.get_total_sale()
-    
-    print(f"Number of flowers: {number_of_flowers}")
-    print(f"Your total was: ${total_sale:,.2f}")
+    """Display_receipt transaction for customer"""
+    total = flowers.calculate()
+    print()
+    for item, price, quantity in flowers.shopping_cart:
+        print(f"{quantity} {item} @ ${price:.2f} = ${price * quantity:.2f}")
+    print(f"Total: ${total:.2f}")
+    print("Thank you for shopping at Floras Flower Farm!")
 
-
-
-floras_flowers = flower.FlorasFlowers()
-floras_flowers.display_menu()
-#floras_flowers.get_input()
-#floras_flowers.calculate()
-
-#display_receipt()
+# Create FlorasFlowers object
+flowers = flower.FlorasFlowers()
+flowers.get_input()
+flowers.calculate()
+display_receipt()

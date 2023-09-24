@@ -3,61 +3,69 @@
     # Version: 5
     # Description: 
 
-# Cost of flower for the customer
-FLOWER_COST = 3.99
-DAISY_COST = 1.00
-LILY_COST = 1.50
-SUNFLOWER_COST = 1.99
-
-
 class FlorasFlowers:
     def __init__(self):
         # Initialize parallel lists for menu intems and prices
         self.menu_items = ["Daisy", "Lily", "Sunflower"]
         self.menu_prices = [3.99, 1.00, 1.50]
-        # Initialize an empty cart
-        self.cart = []
+        # Initialize an empty shopping cart
+        self.shopping_cart = []
 
-#-----------------------CLASS PROPERTIES----------------------#
-    def get_menu_items(self) -> list:
-        return self.menu_items
-    
-    def get_menu_prices(self) -> list:
-        return self.menu_prices
-
-#-----------------------DISPLAY MENU--------------------------#
+#-----------------------DISPLAY FLOWER MENU--------------------------#
     def display_menu(self) -> str:
         """Return menu items and prices as a string"""
-        display = ""
+        # Option A
+        """display = ""
         for n in range(len(self.menu_items)):
             # Increment for numbering of menu
             i = n + 1
             # Concatenate menu items for line by line display
-            display += f"({i}) {self.menu_items[n]} {self.menu_prices[n]:.2f}\n"
-        return display
+            display += f"{i}. {self.menu_items[n]} ${self.menu_prices[n]:.2f}\n"
+        return display"""
 
-    def get_number_flowers(self) -> int:
-        # validation
-        if self.number_of_flowers > 0:
-            return self.number_of_flowers
+        # Option B Import rich to make it fancy
+        from rich.table import Table
+        from rich.console import Console
+        from rich import box
+        console = Console()
+        table = Table(title="Flora's Flower Farm", title_justify="center",box=box.DOUBLE_EDGE)
+        table.add_column("Number", justify="left", no_wrap=True)
+        table.add_column("Flower", justify="left", no_wrap=True)
+        table.add_column("Cost", justify="left", style="green", no_wrap=True)
+        for x in range(3):
+            # Increment for numbering of menu
+            i = x + 1
+            table.add_row(str(i), str(self.menu_items[x]), str(self.menu_prices[x]))
+        console.print(table)
+        
+
+#----------------------ADD ITEMS TO SHOPPING CART-------------------#
+    def add_shopping_cart(self, user_choice: int, quantity: int) -> str:
+        """ Add the item, price, quantity to the shopping cart"""
+        if 0 <= int(user_choice)-1 < len(self.menu_items):
+            item = self.menu_items[int(user_choice)-1]
+            price = self.menu_prices[int(user_choice)-1]
+            self.shopping_cart.append((item, price, quantity))
+            cart_item = f"{quantity} {item}(s) added to the cart."
+            return cart_item
+        # Prevent wrong number being
         else:
-            return "You must order at least one flower."
+            print("Please select a menu item")
 
-    def get_total_sale(self) -> float:
-        return self._total_sale
-    
-    def get_input(self) -> int:
-        # TODO: Get int input from user how many flowers sold
-        self.number_of_daisies = int(input("Enter number of Daisies: "))
-        self.number_of_lilies = int(input("Enter number of Lilies: "))
-        self.number_of_sunflower = int(input("Enter number of Sunflower: "))
-        self.number_of_flowers = self.number_of_daisies + self.number_of_lilies + self.number_of_sunflower
+#---------------------------GET USER INPUT--------------------------#
+    def get_input(self) -> str:
+        """Get input from user on flower and quantity"""
+        while True:
+            FlorasFlowers.display_menu(self)
+            user_choice = input("Enter an item to order or (e) to exit: ").lower()
+            # press e to exit program
+            if user_choice == 'e':
+                break
+            quantity = int(input("Enter the quantity: "))
+            FlorasFlowers.add_shopping_cart(self,user_choice, quantity)
 
-
+#-------------------------CALCULATE THE TOTAL----------------------#
     def calculate(self) -> int:
-        # TODO: Calculate cost of the flowers purchased
-        self.total_daisies = self.number_of_daisies * DAISY_COST
-        self.total_daisy = self.number_of_lilies * LILY_COST
-        self.total_sunflower = self.number_of_sunflower * SUNFLOWER_COST
-        self._total_sale = self.total_daisies + self.total_daisy + self.total_sunflower
-
+        """Calculate cost of the flowers purchased"""
+        total = sum(price * quantity for x, price, quantity in self.shopping_cart)
+        return total
