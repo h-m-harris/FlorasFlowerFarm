@@ -6,14 +6,14 @@
 class FlorasFlowers:
     def __init__(self):
         # Initialize parallel lists for menu intems and prices
-        self.menu_items = ["Daisy", "Lily", "Sunflower"]
-        self.menu_prices = [3.99, 1.00, 1.50]
+        self.menu_items = ["Daisy", "Lily", "Rose", "Sunflower", "Tulip"]
+        self.menu_prices = [3.99, 1.99, 1.49, 2.99, 1.49]
         # Initialize an empty shopping cart
         self.shopping_cart = []
 
 #-----------------------DISPLAY FLOWER MENU--------------------------#
     def display_menu(self) -> str:
-        """Return menu items and prices as a string"""
+        """Return menu items and prices"""
         # Option A
         """display = ""
         for n in range(len(self.menu_items)):
@@ -32,36 +32,43 @@ class FlorasFlowers:
         table.add_column("Number", justify="left", no_wrap=True)
         table.add_column("Flower", justify="left", no_wrap=True)
         table.add_column("Cost", justify="left", style="green", no_wrap=True)
-        for x in range(3):
+        for x in range(len(self.menu_items)):
             # Increment for numbering of menu
             i = x + 1
             table.add_row(str(i), str(self.menu_items[x]), str(self.menu_prices[x]))
         console.print(table)
-        
 
 #----------------------ADD ITEMS TO SHOPPING CART-------------------#
     def add_shopping_cart(self, user_choice: int, quantity: int) -> str:
         """ Add the item, price, quantity to the shopping cart"""
-        if 0 <= int(user_choice)-1 < len(self.menu_items):
+        if 0 <= int(user_choice)-1 <= len(self.menu_items):
             item = self.menu_items[int(user_choice)-1]
             price = self.menu_prices[int(user_choice)-1]
             self.shopping_cart.append((item, price, quantity))
-            cart_item = f"{quantity} {item}(s) added to the cart."
-            return cart_item
-        # Prevent wrong number being
+        # Prevent negative amount entry
         else:
-            print("Please select a menu item")
+            print("Please select a flower to purchase.")
 
 #---------------------------GET USER INPUT--------------------------#
     def get_input(self) -> str:
         """Get input from user on flower and quantity"""
         while True:
             FlorasFlowers.display_menu(self)
-            user_choice = input("Enter an item to order or (e) to exit: ").lower()
+            # Get number of items available
+            options = len(self.menu_items)
+            user_choice = input("Enter an item to order or press (e) to exit: ").lower()
             # press e to exit program
             if user_choice == 'e':
                 break
+            # Prevent entering a menu option that isn't available
+            elif user_choice > str(options):
+                print("Please select a flower to purchase.")
+                continue
             quantity = int(input("Enter the quantity: "))
+            # Prevent negative quantity
+            if quantity <= 0:
+                print("Please enter a quantity.")
+                continue
             FlorasFlowers.add_shopping_cart(self,user_choice, quantity)
 
 #-------------------------CALCULATE THE TOTAL----------------------#
