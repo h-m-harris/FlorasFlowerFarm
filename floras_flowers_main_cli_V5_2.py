@@ -9,16 +9,16 @@ SALES_TAX = .07
 def display_receipt():
     """Display_receipt transaction for customer"""
     subtotal = flowers.calculate()
-    print("╔══════════════════════════════════════════════╗")
+    print("╔═══════════════════════════════════════════════╗")
     for item, price, quantity in flowers.shopping_cart:
-        print(f"║{quantity}-{item} at ${price:.2f} = ${price * quantity:.2f}║")
+        print(f"║{quantity}-{item} at ${price:.2f}\t\t\t${price * quantity:.2f}\t║")
     sales_tax = subtotal * SALES_TAX
     total = subtotal + sales_tax
-    print(f"║Sales Tax: {sales_tax:.2f}║")
-    print(f"║Subtotal: ${subtotal:.2f}║")
-    print(f"║Total: ${total:.2f}║")
-    print("║Thank you for shopping at Floras Flower Farm! ║")
-    print("╚══════════════════════════════════════════════╝")
+    print(f"║\t\t\t     Sales Tax:\t${sales_tax:.2f}\t║")
+    print(f"║\t\t\t      Subtotal:\t${subtotal:.2f}\t║")
+    print(f"║\t\t\t\t Total:\t${total:.2f}\t║")
+    print("║ Thank you for shopping at Floras Flower Farm! ║")
+    print("╚═══════════════════════════════════════════════╝")
 
 # Create FlorasFlowers object
 flowers = flower.FlorasFlowers()
